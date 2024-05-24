@@ -1,7 +1,7 @@
-import { useState } from 'react'
 import './App.css'
-import { HomeContents } from './components/Home'
+//import { HomeContents } from './components/Home'
 import { NavigationBar } from './components/Navigation'
+import { ShopContents } from './components/Shop'
 
 function App() {
 
@@ -9,8 +9,8 @@ function App() {
     <div>
       <NavigationBar>
       </NavigationBar>
-      <HomeContents>
-      </HomeContents>
+      <ShopContents>
+      </ShopContents>
     </div>
   )
 }
