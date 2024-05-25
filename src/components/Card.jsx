@@ -1,12 +1,14 @@
 import '../App.css'
 import PropTypes from 'prop-types';
+import { useState } from 'react'
 
 function Card({title, description, price, imgSrc, content, setContent}) {
     let index = content.findIndex(item => item.title === title);
-    let total = 0;
+    let initialTotal = 0;
     if (index !== -1) {
-        total = content[index].total;
+        initialTotal = content[index].total;
     }
+    const [total, setTotal] = useState(initialTotal);
 
     const handleChange = (e) => {
         let inputValue = e.target.value;
@@ -14,35 +16,36 @@ function Card({title, description, price, imgSrc, content, setContent}) {
         // Convert to an integer if the input value is not empty
         if (inputValue !== "") {
             inputValue = Math.abs(parseInt(inputValue, 10));
-
-            // If the input is not a valid number, leave it unchanged
-            if (isNaN(inputValue)) {
+            // If the input is not a valid number or empty, set to 0;
+            if (isNaN(inputValue) || inputValue === "") {
                 inputValue = 0;
             }
-        }
-
-        // If empty, set to 0.
-        if (inputValue === "") {
+        } else {
+            // If empty, set to 0.
             inputValue = 0;
         }
 
-        let newObj = {total: inputValue, price, title};
+        setTotal(inputValue);
+    };
+
+    const submitChange = () => {
+        let newObj = {total, price, title};
         let contentCopy = [...content];
         let index = contentCopy.findIndex(item => item.title === newObj.title);
         if (index !== -1) {
-            if (inputValue === 0) {
+            if (total === 0) {
                 contentCopy = contentCopy.filter(item => item.title !== title);
-            } else if (inputValue !== contentCopy[index].total) {
-                contentCopy[index].total = inputValue;
+            } else if (total !== contentCopy[index].total) {
+                contentCopy[index].total = total;
             }
         } else {
-            if (inputValue > 0) {
+            if (total > 0) {
                 contentCopy.push(newObj);
             }
         }
-        total = inputValue;
         setContent(contentCopy);
-    };
+    }
+
 
     return (
         <div className="card">
@@ -51,7 +54,7 @@ function Card({title, description, price, imgSrc, content, setContent}) {
                 <p className="card-data">{title}</p>
                 <p className="card-data">{price.toFixed(2)}$</p>
                 <input type="number" min="0" step="1" value={total} onChange={handleChange}/>
-                <button className="submitButton">Order</button>
+                <button className="submitButton" onClick={submitChange}>Order</button>
             </div>
         </div>
     )
