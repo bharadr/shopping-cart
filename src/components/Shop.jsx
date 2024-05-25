@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react'
 import { Card } from './Card'
+import { useOutletContext } from "react-router-dom";
 
 
 function ShopContents() {
+    const [cartContents, setCartContents] = useOutletContext();
 
     const [productList, setProductList] = useState({});
     const [error, setError] = useState(null);
@@ -35,14 +37,12 @@ function ShopContents() {
         <div className='shopSection'>
             {
                 productList.map((product) => (
-                    <Card key={product.id} title={product.title} description={product.description} price={product.price} imgSrc={product.image}  />
+                    <Card key={product.id} title={product.title} description={product.description} price={product.price} imgSrc={product.image} content={cartContents} setContent={setCartContents} />
                 ))
             }
         </div>
     );
-  }
-
-
+}
 
 
 export { ShopContents };

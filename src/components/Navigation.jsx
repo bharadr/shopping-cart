@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import PropTypes from 'prop-types';
+
 
 function NavigationBar({toggleCart, totalItems}) {
     return (
@@ -18,7 +20,9 @@ function NavigationBar({toggleCart, totalItems}) {
     )
 }
 
-
-
+NavigationBar.propTypes = {
+    totalItems: PropTypes.number.isRequired,
+    toggleCart: PropTypes.func.isRequired,
+};
 
 export { NavigationBar };

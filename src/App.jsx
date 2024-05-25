@@ -24,8 +24,8 @@ function App() {
   return (
     <div>
       <NavigationBar toggleCart={toggleCart} totalItems={totalItems()}></NavigationBar>
-      <Outlet/>
-      <Cart isOpen={cartOpen} closeCart={closeCart} />
+      <Outlet context={[cartContents, setCartContents]} />
+      <Cart isOpen={cartOpen} closeCart={closeCart} contents={cartContents} />
     </div>
   )
 }
