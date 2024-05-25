@@ -34,7 +34,7 @@ function ShopContents() {
     return (
         <div className='shopSection'>
             {
-                productList.map((product, index) => (
+                productList.map((product) => (
                     <Card key={product.id} title={product.title} description={product.description} price={product.price} imgSrc={product.image}  />
                 ))
             }

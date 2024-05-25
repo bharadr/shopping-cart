@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import '../App.css'
 
 function Card({title, description, price, imgSrc}) {
 
@@ -23,11 +24,12 @@ function Card({title, description, price, imgSrc}) {
     return (
         <div className="card">
             <img className="card-image" src={imgSrc} alt={description}></img>
-            <p className="card-title">{title}</p>
-            <p className="card-description">{description}</p>
-            <p className="card-price">{price}$</p>
-            <input type="number" min="0" step="1" value={value} onChange={handleChange}/>
-            <button className="submitButton">Order</button>
+            <div className='cardContent'>
+                <p className="card-data">{title}</p>
+                <p className="card-data">{price}$</p>
+                <input type="number" min="0" step="1" value={value} onChange={handleChange}/>
+                <button className="submitButton">Order</button>
+            </div>
         </div>
     )
 }

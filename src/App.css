@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
   min-width: 100vw;
   min-height: 100vh;
@@ -24,6 +28,11 @@ body {
   font-size: 1.5em;
   height: 15vh;
   transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
+}
+
+#navigation-bar button a {
+  text-decoration: none; 
+  color: inherit;
 }
 
 #navigation-bar button:hover {
@@ -57,3 +66,74 @@ body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+.card {
+  display: flex;
+  flex-direction: row;
+  gap: 5%;
+  width: 30%;
+  height: 15%;
+  border: 2px grey solid;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+  padding: 1%;
+  box-sizing: border-box; /* Ensure padding and border are included in the width and height */
+}
+
+.card-image {
+  width: 50%;
+  height: auto; /* Adjust height based on aspect ratio */
+  object-fit: contain; /* Ensure the image covers its container */
+}
+
+.cardContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 50%;
+}
+
+.shopSection {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2%;
+  align-items: center;
+  padding: 2%;
+}
+
+.card-data {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -250px;
+  width: 250px;
+  height: 100%;
+  background-color: #333;
+  color: #fff;
+  transition: left 0.3s ease;
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0,0,0,0.5);
+  z-index: 1000;
+}
+
+.sidebar.open {
+  left: 0;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.content {
+  margin-top: 50px;
+}
