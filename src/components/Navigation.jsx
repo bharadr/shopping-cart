@@ -1,6 +1,19 @@
 import { Link } from "react-router-dom";
 import PropTypes from 'prop-types';
+import '../App.css'
+import CartImage from "../assets/cart.png"
 
+
+function CartIcon({toggleCart, totalItems}) {
+    return (
+        <div className="cart-container">
+          <button onClick={toggleCart} className="cart-button">
+            <img id="cart-image" src={CartImage} alt="An Cart Image"></img>
+            <span className="cart-count">{totalItems}</span>
+          </button>
+        </div>
+    );    
+}
 
 function NavigationBar({toggleCart, totalItems}) {
     return (
@@ -13,8 +26,7 @@ function NavigationBar({toggleCart, totalItems}) {
                 <button>
                     <Link to="shop">Shop</Link>
                 </button>
-                <button onClick={toggleCart}>Cart</button>
-                <p>{totalItems}</p>
+                <CartIcon toggleCart={toggleCart} totalItems={totalItems}/>
             </div>
         </div>
     )
@@ -24,5 +36,11 @@ NavigationBar.propTypes = {
     totalItems: PropTypes.number.isRequired,
     toggleCart: PropTypes.func.isRequired,
 };
+
+CartIcon.propTypes = {
+    totalItems: PropTypes.number.isRequired,
+    toggleCart: PropTypes.func.isRequired,
+};
+
 
 export { NavigationBar };
