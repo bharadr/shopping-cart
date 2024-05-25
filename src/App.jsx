@@ -14,16 +14,14 @@ function App() {
   const closeCart = () => {
     setCartOpen(false);
   };
-
-  const totalItems = () => {
-    return cartContents.reduce((accumulator, currentObject) => {
-      return accumulator + (currentObject.total || 0);
-    }, 0);
-  }
+  
+  let totalItems = cartContents.reduce((accumulator, currentObject) => {
+    return accumulator + (currentObject.total || 0);
+  }, 0);
 
   return (
     <div>
-      <NavigationBar toggleCart={toggleCart} totalItems={totalItems()}></NavigationBar>
+      <NavigationBar toggleCart={toggleCart} totalItems={totalItems}></NavigationBar>
       <Outlet context={[cartContents, setCartContents]} />
       <Cart isOpen={cartOpen} closeCart={closeCart} contents={cartContents} />
     </div>
